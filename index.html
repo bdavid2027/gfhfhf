@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500&family=Nova+Square&family=Play&family=Saira+Semi+Condensed:wght@600&display=swap" rel="stylesheet">
+    <style>
+        a {
+            text-transform: capitalize;
+            text-decoration: none;
+            outline: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 65%;
+            overflow-x: hidden;
+        }
+        body {
+            background: #4F1602;
+            margin: 0;
+        }
+        header {
+            width: 96%;
+            background: #fff;
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 30px;
+			border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px;
+            z-index: 4;
+        }
+        .navbar {
+            max-width: 100%;
+        }
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .navbar li {
+            margin-left: 16px;
+			margin-right: 10px;
+        }
+        .navbar a {
+            color: #333;
+        }
+        .navbar ul li a {
+            font-size: 20px;
+            transition: .2s;
+			color: #642A17;
+			font-family: 'Exo 2', sans-serif;
+        }
+        .navbar ul li a:hover {
+            color: #DB6E2D;
+        }
+		header .logo {
+			display: flex;
+			align-items: center;
+		}
+		header .logo img {
+			margin-right: 10px;
+		}
+		header .logo img,
+			header .logo span {
+			vertical-align: middle;
+		}
+        header .fas-bars {
+            font-size: 30px;
+            cursor: pointer;
+            display: none;
+        }
+		header .logo span {
+			font-size: 20px;
+			text-transform: uppercase;
+			font-family: 'Nova Square', sans-serif;
+			color: #642A17;
+		}
+        .menu-block {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(229, 152, 105, 0.9);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .menu-block:target {
+            display: flex;
+        }
+        .menu-block ul {
+            flex-flow: column;
+            text-align: center;
+        }
+
+        .menu-block ul li {
+            margin: 10px 0;
+        }
+
+        .menu-block a {
+            font-size: 15px;
+            color: #642A17;
+            text-decoration: none;
+            transition: .2s;
+			font-family: 'Exo 2', sans-serif;
+        }
+
+        .menu-block a:hover {
+            color: #DE413E;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+		header .fas-bars {
+			color: #642A17;
+		}
+		header .fas-bars:hover {
+			color: #DE413E;
+			transition: .2s;
+		}
+        @media (max-width: 768px) {
+            header .fas-bars {
+                display: block;
+            }
+
+            .navbar {
+                display: none;
+            }
+
+            .menu-block a {
+                font-size: 3rem;
+            }
+
+            .menu-block .close-btn {
+                display: block;
+            }
+
+            .menu-block ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+            }
+            .menu-block ul li {
+                margin-left: 0;
+            }
+
+            .menu-block ul li a {
+                font-size: 20px;
+            }
+
+            header .fas-bars.active {
+                display: none;
+            }
+
+            .about {
+                height: auto;
+            }
+
+            .about .row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about .con,
+            .about .img {
+                flex: 1;
+                max-width: 100%;
+            }
+
+            .about .con {
+                padding-right: 10px;
+                padding-left: 10px;
+            }
+        }
+
+        .home {
+            min-height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(211, 82, 33, 0.9)), url("image/bg.jpg") no-repeat center center;
+			 background-size: cover;
+        }
+
+        .home .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column;
+            padding-top: 100px;
+            padding-bottom: 80px;
+            text-align: center;
+        }
+
+        .home .content h1 {
+            font-size: 50px;
+			font-family: 'Saira Semi Condensed', sans-serif;
+			border: solid 1px #fff;
+            color: #fff;
+            padding: 0 10px;
+            text-shadow: 0 3px 3px rgba(0, 0, 0, .3);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .home .content p {
+            font-size: 20px;
+            color: #eee;
+            padding: 10px 150px;
+            margin-top: 10px;
+			font-family: 'Saira Semi Condensed', sans-serif;
+        }
+        .home .content button {
+            height: 40px;
+            width: 200px;
+            border-radius: 50px;
+            background: #B42910;
+            color: #fff;
+            font-size: 20px;
+			font-family: 'Saira Semi Condensed', sans-serif;
+            cursor: pointer;
+            transition: .2s;
+            border: none;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
+        }
+		.home .content button a {
+			color: #fff;
+		}
+        .home .content button:hover {
+            letter-spacing: 2px;
+        }
+        .home .cont {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+		.home .content .discover-button {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #B42910;
+			color: #fff;
+			text-decoration: none;
+			font-size: 20px;
+			font-family: 'Saira Semi Condensed', sans-serif;
+			cursor: pointer;
+			border-radius: 50px;
+			transition: 0.2s;
+			border: none;
+			box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
+		}
+		.home .content .discover-button:hover {
+			letter-spacing: 2px;
+		}
+        .home .cont .box {
+            height: 250px;
+            width: 250px;
+            background: #fff;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, .5);
+            margin: 20px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .home .cont .box i {
+            height: 60px;
+            width: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 50%;
+            color: #fff;
+            background: #C3291B;
+            font-size: 30px;
+            margin: 2rem 0;
+            transition: .2s;
+        }
+
+        .home .cont .box h3 {
+            font-size: 20px;
+            color: #E09434;
+            transition: .2s;
+			font-family: 'Saira Semi Condensed', sans-serif;
+        }
+
+        .home .cont .box p {
+            font-size: 13px;
+            padding: 7px 20px;
+            color: #666;
+			font-family: 'Exo 2', sans-serif;
+        }
+
+        .home .cont .box:hover i {
+            background: #E09434;
+        }
+
+        .home .cont .box:hover h3 {
+            color: #C3291B;
+        }
+
+        .home::before {
+            content: ' ';
+            position: absolute;
+            bottom: -350px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 470px solid #fff;
+            width: 100%;
+			background-attachment: fixed;
+        }
+
+        .home .content p {
+            padding: 15px 20px;
+        }
+
+        .about {
+            background: #fff;
+            z-index: 3;
+            position: relative;
+        }
+
+        .hd {
+            font-size: 50px;
+            color: #A62A08;
+            text-align: center;
+            padding: 0 10px;
+            padding-top: 60px;
+            letter-spacing: 2px;
+            font-weight: 500;
+			font-family: 'Nova Square', sans-serif;
+			background: #fff;
+        }
+        .tle {
+            padding: 0 10px;
+            font-size: 30px;
+            text-align: center;
+            font-weight: 400;
+            color: #642A17;
+			font-family: 'Exo 2', sans-serif;
+        }
+        .about .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+			margin: 20px 0;
+        }
+        .about .row img {
+            max-width: 100%;
+            height: 700px;
+			border-radius: 10px;
+        }
+        .about .row .con {
+            padding: 20px;
+			flex: 1;
+			max-width: 100%;
+        }
+        .about .row .con h3 {
+            font-size: 30px;
+            color: #E17A23;
+			font-family: 'Nova Square', sans-serif;
+			background: #8B1D0A;
+        }
+        .about .row .con p {
+            font-size: 16px;
+            color: #642A17;
+            padding: 10px 0;
+			font-family: 'Exo 2', sans-serif;
+        }
+
+        .about .row .con button {
+            height: 35px;
+            width: 170px;
+            background: #B42910;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
+            cursor: pointer;
+            transition: .2s;
+            font-size: 20px;
+			margin-bottom: 5px;
+			font-family: 'Saira Semi Condensed', sans-serif;
+        }
+		.about .row .con button a {
+			color: #fff;
+		}
+        .about .row .con button:hover {
+            letter-spacing: 2px;
+            opacity: .8;
+        }
+		.about .row .con .learn-button {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #B42910;
+			color: #fff;
+			text-decoration: none;
+			font-size: 20px;
+			font-family: 'Saira Semi Condensed', sans-serif;
+			cursor: pointer;
+			border-radius: 50px;
+			transition: 0.2s;
+			border: none;
+			box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
+		}
+		.about .row .con .learn-button:hover {
+			letter-spacing: 2px;
+		}
+		.course {
+			background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(211, 82, 33, 0.9)), url("https://wallpapercave.com/wp/wp6011045.jpg") no-repeat center center fixed;
+			background-size: cover;
+		}
+		.course .heading {
+            font-size: 50px;
+            color: #A62A08;
+            text-align: center;
+            padding: 0 10px;
+            padding-top: 60px;
+            letter-spacing: 2px;
+            font-weight: 500;
+			font-family: 'Nova Square', sans-serif;
+			background: #fff;
+		}
+		.title {
+            font-size: 40px;
+            color: #fff;
+			font-family: 'Saira Semi Condensed', sans-serif;
+            text-align: center;
+            padding: 0 10px;
+            padding-top: 60px;
+            letter-spacing: 2px;
+            font-weight: 500;
+		}
+		.course .ctr {
+			width: 85%;
+			display: flex;
+			justify-content: center;
+			margin: 0 auto;
+			padding-top: 40px;
+			flex-wrap: wrap;
+		}
+		.course .ctr .box1,
+		.course .ctr .box2,
+		.course .ctr .box3,
+		.course .ctr .box4,
+		.course .ctr .box5,
+		.course .ctr .box6,
+		.course .ctr .box7, 
+		.course .ctr .box8, 
+		.course .ctr .box9 {
+			height: 270px;
+			width: 250px;
+			margin: 35px 20px;
+			text-align: center;
+			border-radius: 10px;
+			box-shadow: 3px 3px 0 1px #E08804, 5px 5px 5px rgba(0, 0, 0, .3);
+		}
+		.course .ctr .box1 i,
+		.course .ctr .box2 i,
+		.course .ctr .box3 i,
+		.course .ctr .box4 i,
+		.course .ctr .box5 i,
+		.course .ctr .box6 i,
+		.course .ctr .box7 i, 
+		.course .ctr .box8 i,
+		.course .ctr .box9 i {
+			height: 100px;
+			width: 100px;
+			line-height: 100px;
+			text-align: center;
+			color: #701C04;
+			border-radius: 50%;
+			background: #E08904;
+			margin-top: -40px;
+			border: 10px solid #701C04;
+			font-size: 35px;
+		}
+		.course .ctr .box1 h3,
+		.course .ctr .box2 h3,
+		.course .ctr .box3 h3,
+		.course .ctr .box4 h3,
+		.course .ctr .box5 h3,
+		.course .ctr .box6 h3,
+		.course .ctr .box7 h3,
+		.course .ctr .box8 h3,
+		.course .ctr .box9 h3 {
+			font-size: 20px;
+			color: #E0AE68;
+			font-family: 'Nova Square', sans-serif;
+		}
+		.course .ctr .box1 p,
+		.course .ctr .box2 p,
+		.course .ctr .box3 p,
+		.course .ctr .box4 p,
+		.course .ctr .box5 p,
+		.course .ctr .box6 p,
+		.course .ctr .box7 p,
+		.course .ctr .box8 p, 
+		.course .ctr .box9 p {
+			font-size: 15px;
+			color: #fff;
+			padding: 0 5px;
+			font-family: 'Exo 2', sans-serif;
+		}
+		.facil {
+		min-height: 100px;
+		background: #fff;
+		}
+		.heading {
+			text-align: center;
+			font-size: 50px;
+			padding: 10px;
+			padding-top: 80px;
+			color: #A62A08;
+			font-family: 'Nova Square', sans-serif;
+			letter-spacing: 2px;
+		}
+		.heading span {
+			color: #DB9821;
+		}
+		.facil .bcon {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+			padding-bottom: 30px;
+		}
+		.facil .bcon .box {
+			height: 200px;
+			width: 300px;
+			margin: 15px;
+			overflow: hidden;
+		}
+		.facil .bcon .box img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+			border-radius: 5px;
+		}
+       footer {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            background: #111;
+            color: #fff;
+            text-align: center;
+        }
+
+        .footer {
+            width: 70%;
+            padding: 70px 30px 20px;
+            margin: auto;
+        }
+
+        .icons {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 10px;
+		}
+
+        .icons a {
+            text-decoration: none;
+            padding: 10px;
+            background-color: #fff;
+            margin: 10px;
+            border-radius: 50%;
+        }
+
+        .icons a i {
+            font-size: 20px;
+            color: #000;
+            opacity: 0.9;
+        }
+
+        .icons a:hover {
+            background-color: #111;
+            transition: .5s;
+        }
+
+        .icons a:hover i {
+            color: #fff;
+            transition: .5s;
+        }
+
+		.fnav {
+			margin: 20px 0;
+			text-align: center;
+		}
+
+		.fnav ul {
+			display: flex;
+			justify-content: center;
+			list-style-type: none;
+			padding: 0;
+		}
+		.fnav ul li {
+			margin: 0 10px;
+		}
+		.fnav ul li a {
+			color: #fff;
+			text-decoration: none;
+			font-size: 13px;
+			opacity: .7;
+			transition: .5s;
+		}
+
+		.fnav ul li a:hover {
+			opacity: 1;
+		}
+		.fbot {
+			background: #000;
+			padding: 20px;
+			text-align: center;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: 0;
+			z-index: 4;
+		}
+
+        .fbot p {
+            color: #fff;
+            margin: 0;
+        }
+
+        .designer {
+            opacity: .7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+            margin: 0px 5px;
+        }
+		#p {
+		margin-top:10px;
+		}
+        @media (max-width: 700px) {
+            .fnav ul {
+                flex-direction: column;
+            }
+
+            .fnav ul li {
+                width: 100%;
+                text-align: center;
+                margin: 10px;
+            }
+        }
+		.reviews {
+			background: #fff;
+			padding: 20px 0;
+			margin-top: 40px;
+		}
+		.reviews h1 {
+			text-align: center;
+			font-size: 50px;
+			padding: 10px;
+			padding-top: 80px;
+			color: #A62A08;
+			font-family: 'Nova Square', sans-serif;
+			letter-spacing: 2px;
+		}
+		.rw {
+			width: 80%;
+			margin: auto;
+			padding-top: 50px;
+			text-align: center;
+		}
+		.rcol {
+			width: 48%;
+			margin-bottom: 5%;
+			border-radius: 5px;
+			text-align: left;
+			background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(211, 82, 33, 0.9)), url("https://i0.wp.com/news.qoo-app.com/en/wp-content/uploads/sites/3/2023/10/ReReRe1999.jpg") no-repeat;
+			background-size: cover;
+			padding: 25px;
+			box-sizing: border-box;
+			display: inline-block;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+		.rcol:nth-child(even) {
+			float: right;
+			background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(211, 82, 33, 0.9)), url("https://i.pinimg.com/564x/f3/4a/b7/f34ab79ed4e3f77efdae5bace3f268d1.jpg") no-repeat;
+			background-size: cover;
+		}
+		.rcol img {
+			height: 70px;
+			margin-left: 5px;
+			margin-right: 30px;
+			border-radius: 50%;
+		}
+		.rcol p {
+			font-size: 16px;
+            color: #fff;
+            padding: 10px 0;
+			font-family: 'Exo 2', sans-serif;
+		}
+		.rcol h3 {
+			margin-top: 15px;
+			text-align: left;
+			font-size: 30px;
+			font-family: 'Saira Semi Condensed', sans-serif;
+			color: #4F1602;
+		}
+		.rcol:nth-child(even) {
+			float: none;
+		}
+		.rcol .fa {
+		color: #fff;
+		font-size: 20px;
+		}
+		.rcol h3,
+		.rcol .fa {
+		margin: 0;
+		padding: 0;
+		}
+		@media (max-width: 700px) {
+		.rcol {
+			width: 100%;
+			float: none;
+			margin-right: 0;
+		}
+		.rcol img {
+			margin-left: 0;
+			margin-right: 0;
+		}
+		}
+        .video-section {
+            background-color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding: 0;
+            background-color: #fff; 
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .video-container video {
+            width: 80%;
+            height: 80%;
+		}
+</style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+			<img src = "logo.png" width = "40" alt = "logo">
+			<span>University of Breshiana</span></a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">home</a></li>
+				<li><a href="contact.html">contact</a></li>
+				<li><a href="about.html">about</a></li>
+				<li><a href="extra.html">extra</a></li>
+				<li><a href="acad.html">academics</a></li>
+            </ul>
+        </nav>
+        <a href="#menu" class="fas fa-bars fas-bars"></a>
+    </header>
+    <div class="menu-block" id="menu">
+        <a href="#" class="close-btn">&#10005;</a>
+        <ul>
+            <li><a href="index.html">home</a></li>
+            <li><a href="contact.html">contact</a></li>
+			<li><a href="about.html">about</a></li>
+			<li><a href="extra.html">extra</a></li>
+			<li><a href="acad.html">academics</a></li>
+        </ul>
+    </div>
+	<section class="home" id="home">
+	<div class="content">
+       <h1>Your Journey to Excellence Begins Here</h1>
+       <p>Igniting the heart and mind of students with transformative education and shaping futures through innovation.</p>
+       <a href="about.html" class="discover-button">Discover more</a>
+    </div>
+        <div class="cont">
+            <div class="box">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>courses</h3>
+                <p>We offer a wide range of courses such as Engineering, Nursing, Education, and many more.</p>
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-building"></i>
+                <h3>facilities</h3>
+                <p>We have plenty of facilities to ensure that students can efficiently learn.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-award"></i>
+                <h3>certifications</h3>
+                <p>No. 1 University, Guinness Book Record for the most satisfied and happy students in a University, etc.</p>
+            </div>
+        </div>
+    </section>
+        <div class="video-section">
+            <div class="video-container">
+                <video controls autoplay muted loop playsinline>
+                    <source src="image/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    <section class="about">
+        <h1 class="hd">'About Us'</h1>
+        <h3 class="tle">Start your journey with us</h3>
+        <div class="row">
+            <div class="con">
+                <h3>Start your journey to a better life with us</h3>
+                <p>Welcome to University of Breshiana! We are a leading university in our country, offering a wide range of courses in different strands. As the number one university, we pride ourselves in providing high-quality education and training to our students, setting them up for success in their chosen fields. Our goal is to provide an environment where our students can pursue their passions, explore their interests, and grow their knowledge, skills, and capabilities. We are committed to nurturing the next generation of leaders and change-makers in our country.</p>
+                <a href="about.html" class="learn-button">Learn more</a>
+            </div>
+            <div class="img">
+                <img src="ab.jpg" alt="about">
+            </div>
+        </div>
+    </section>
+	<section class = "course">
+		<h1 class = "heading">'Our Courses'</h1>
+		<h3 class = "title"> upgrade your skills with our amazing courses</h3>
+		<div class="ctr">
+			<div class = "box1">
+				<i class="fa-solid fa-business-time"></i>
+				<h3>Business</h3>
+				<p>Unlock the secret and strategies of the wide business world with our amazing practical, and foundational course for students.</p>
+			</div>
+			<div class = "box2">
+				<i class="fa-solid fa-screwdriver-wrench"></i>
+				<h3>Engineering</h3>
+				<p>Embark on a journey to explore the dynamic world of Engineering with our effective and comprehensive course designed for starting students.</p>
+			</div>
+			<div class = "box3">
+				<i class="fa-solid fa-dna"></i>
+				<h3>Biological and Biomedical Sciences</h3>
+				<p>Explore the fascinating journey through the Biomedical and Biomedical Sciences with our engaging course.</p>
+			</div>
+			<div class = "box4">
+				<i class="fa-solid fa-film"></i>
+				<h3>Visual and Performing Arts</h3>
+				<p>Immerse yourself in the vibrant and colorful world of visual and performing arts with our dynamic course.</p>
+			</div>
+			<div class = "box5">
+				<i class="fa-solid fa-book"></i>
+				<h3>Education</h3>
+				<p>Discover the elements and principles of education with our fundamental, foundational, and essential course.</p>
+			</div>
+			<div class = "box6">
+				<i class="fa-solid fa-brain"></i>
+				<h3>Psychology</h3>
+				<p>Dive into the amazing fundamentals of psychology with our engaging course which can offer a deep dive into the mysteries of the human mind.</p>
+			</div>
+			<div class = "box7">
+				<i class="fa-solid fa-user-nurse"></i>
+				<h3>Nursing</h3>
+				<p>Uncover the different essential foundations of nursing through our engaging, comprehensive, and amazing course.</p>
+			</div>
+			<div class = "box8">
+				<i class="fa-solid fa-face-angry"></i>
+				<h3>Anti-Silos</h3>
+				<p>Amaze yourself with the transformative concept of "Anti-Silos" with our course in breaking down barriers.</p>
+			</div>
+			<div class = "box9">
+				<i class="fa-solid fa-heart"></i>
+				<h3>Delusional</h3>
+				<p>Unravel the different layers of delusional thinking th our very in-depth course, providing a very comprehensive exploration of this phenomenon.</p>
+			</div>
+		</div>
+	</section>
+	<section class = "facil">
+		<div class = "contr">
+		<h1 class = "heading">'Our Gallery'</h1>
+			<div class = "bcon">
+				<div class = "box">
+						<img src = "library.jpg" alt = "library">
+				</div>
+				<div class = "box">
+						<img src = "classroom.jpg" alt = "room">
+				</div>
+				<div class = "box">
+						<img src = "canteen.jpg" alt = "canteen">
+				</div>
+				<div class = "box">
+						<img src = "lab.jpg" alt = "lab">
+				</div>
+				<div class = "box">
+						<img src = "comlab.jpg" alt = "comlab">
+				</div>
+				<div class = "box">
+						<img src = "hallway.jpg" alt = "hallway">
+				</div>
+				<div class = "box">
+						<img src = "building.jpg" alt = "building">
+				</div>
+				<div class = "box">
+						<img src = "roof.jpg" alt = "roof">
+				</div>
+				<div class = "box">
+						<img src = "garden.jpg" alt = "garden">
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class = "reviews">
+		<h1> 'What Our Students Say' </h1>
+		<div class = "rw">
+			<div class = "rcol">
+				<img src = "image/regulus.jpg" alt = "Regulus">
+				<div>
+					<p>Oh mah gawdddd ang ganda sa school na toh guys, I had a really nice experience, the facilities, courses, everything was so good ! I graduated with flying colors in Nursing Course !!</p>
+					<h3> Regu Luis </h3>
+					<i class = "fa fa-star"></i>
+					<i class = "fa fa-star"></i>
+					<i class = "fa fa-star"></i>
+					<i class = "fa fa-star"></i>
+					<i class = "fa fa-star"></i>
+				</div>
+			</div>
+			<div class = "rcol">
+				<img src = "image/sonetto.jpg" alt = "Sonetto">
+				<div>
+					<p> This school is so slay guys, the employees were so kind, and the teachers were very considerate too! If only I could change back time, When you go to this school, time flies so fast. . .</p>
+					<h3> Sonet Tolia </h3>
+					<i class = "fa fa-star"></i>
+					<i class = "fa fa-star"></i>
+					<i class = "fa fa-star"></i>
+					<i class = "fa fa-star"></i>
+					<i class = "fa fa-star"></i>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer>
+	<div class = "footer">
+		<div class = "icons">
+			<a href = " "><i class = "fa-brands fa-facebook"></i></a>
+			<a href = " "><i class="fa-solid fa-phone"></i></a>
+			<a href = " "><i class="fa-solid fa-address-card"></i></a>
+			<a href = " "><i class = "fa-brands fa-google-plus"></i></a>
+			<a href = " "><i class = "fa-solid fa-envelope"></i></a>
+		</div>
+		<div class = "fnav">
+			<ul>
+				<li><a href="index.html">home</a></li>
+				<li><a href="contact.html">contact</a></li>
+				<li><a href="about.html">about</a></li>
+				<li><a href="extra.html">extra</a></li>
+				<li><a href="acad.html">academics</a></li>
+			</ul>
+		</div>
+		<div class = "fbot">
+			<p> Copyright © 2023, Designed by <span class = "designer"> Breshiana </span>
+		</div>
+		<div id = "p">
+			<p>‎ </p>
+		</div>
+	</div>
+	</footer>
+</body>
+</html>
